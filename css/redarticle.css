@@ -1,0 +1,9 @@
+/* CSS Document */
+
+#top{ width:1200px; margin:20px auto; border:1px solid #F0F0F0; text-align:center;}
+#h{ width:100%; height:88px;margin:0 auto; text-align:center; padding:10px 0;}
+h1{ font-size:26px; color:#333; margin:10px 0;}
+#time{ margin-bottom:5px;}
+#line{ height:1px; width:75%; background:#CCC; margin:0 auto;}
+#center{ display:inline-block; width:900px; margin-top:40px; min-height:600px; font-size:14px; line-height:28px; border:none; text-indent:29px; text-align:justify;}
+#back{ position:absolute; right:316px; top:48px; font-size:14px; color:#666;}

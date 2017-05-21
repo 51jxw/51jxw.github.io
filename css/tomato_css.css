@@ -1,0 +1,42 @@
+@charset "utf-8";
+/* CSS Document */
+
+body{ background:#6bc4f7;}
+
+/*番茄钟*/
+#wrap{width:251px;margin:90px auto;text-align:center; position:absolute; left:50%; margin-left:-125.5px; z-index:100/* border:1px solid #fff; */}
+#menu{border:none; background:none; float:left; font:18px; color:#fff;font-weight:bold;}
+#menu:after{ content:"∨"; font-size:14px; font-weight:bold;}
+#tomato{ width:140px; height:140px;font-size:24px; color:#fff; border:4px solid #FFF; border-radius:74px;text-align:center; line-height:140px; font-weight:bold; margin:0 auto;}
+
+/*取消时钟按钮*/
+#close_tomato{ max-width:24px; max-height:24px; position:absolute; top:11px; left:166px;}
+
+/*开始按钮*/
+#start{ width:70px; height:70px;font-size:14px; margin:0 auto; border:2px solid #fff; border-radius:37px;margin-top:20px; background:none; color:#fff;}
+
+/*进度条*/
+#progress_bar{ height:30px; width:240px; background:#fff;}
+#wrap_progress_bar{height:30px;background:#F99;margin:0 auto; margin-top:20px;width:240px; border-radius:10px; overflow:hidden; border:2px solid #fff;}
+
+
+/*设置弹窗*/
+#alert_window{ position:fixed; width:100%;height:200px; background:#fafafa; left:0px; bottom:0px; z-index:999; display:none; min-width:251px;}
+#alert_window .set_menu ul{ background:#fff; border-bottom:1px solid #999; height:34px;}
+#alert_window .set_menu li{ font-size:14px; color:#333; float:left; height:34px; line-height:34px; padding-left:12px; padding-right:14px; margin-right:10px;}
+
+.tab_select{ font-weight:bold;}
+.tab_select:after{ content:" "; position:relative; left:-3px; top:-5px; background:#F93; display:block; width:60px; height:6px; }
+
+.set_list li{ height:30px; line-height:30px; padding-left:12px;}
+.set_list select{ display:inline-block;}
+.set_list .set_time_list li:first-child, .set_music_list li:first-child{ padding-top:10px;}
+.set_list span{ padding-right:10px;}
+.set_list .set_time_list .ts{padding-right:16px;}
+
+
+/*提醒弹窗*/
+.remind_alert{  position:absolute; width:100%; height:100%;left:0px;right:0px;background:grey; opacity:0.6; z-index:2000; display:none; animation:show 4s;}
+.remind_content{ position:absolute; width:250px; height:150px; background:#fff; font-size:14px; line-height:150px; color:#666; left:50%; margin-left:-125px; margin-top:250px; text-align:center; z-index:2001; display:none; animation:show 4s;}
+
+.remind_down{ display:none; animation:godown 4s;}
