@@ -1,0 +1,25 @@
+/*css初始化*/
+body,div,ul,li,p,h,h1,h2,h3,strong,span,a,p,dl,dd,dt,input,textarea,button,img{padding:0;margin:0; font-family:"方正兰亭细黑_GBK"}
+ul,li{ list-style:none;}
+a{ text-decoration:none;}
+a:hover{ text-decoration:underline;}
+.clear{ zoom:1;}
+.clear:after{ content:""; display:block; clear:both;}
+
+body{font-size:62.5%; }
+
+@keyframes godown{
+	
+	from{ opacity:1;}
+	to{ opacity:0;}
+	
+	
+	}
+	
+@keyframes show{
+	
+	from{ opacity:0;}
+	to{ opacity:1;}
+	
+	
+	}
