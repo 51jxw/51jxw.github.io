@@ -285,7 +285,7 @@ tomato.prototype.remind=function ()
 tomato.prototype.p_bgm=function()
 {		
 		
-		var music_name="平静下雨";
+		var music_name="时针走动";
 		if(localStorage.getItem("background_music")!=null)
 		{
 			music_name=localStorage.getItem("background_music");
