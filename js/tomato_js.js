@@ -5,6 +5,15 @@ window.onload=function ()
 
 }
 
+/**
+
+1、便捷功能对象
+2、声音提醒对象
+3、标题提醒对象
+
+
+*/
+
 //便捷功能对象
 var fn=
 {
@@ -23,11 +32,10 @@ var fn=
 		var el=document.getElementsByClassName(cla);return el;
 	}
 	
-		
 }
 
 
-//-----------------------------------------------------声音提醒对象
+//声音提醒对象
 var audio=function (pl,lo,vo)
 {
 	
@@ -36,8 +44,8 @@ var audio=function (pl,lo,vo)
 	this.obj_s3=document.createElement("SOURCE");
 	this.obj.innerHTML="您的浏览器等级太低，不支持音乐播放器，建议更换其他浏览器";
 	
-	this.pl=pl;
-	this.lo=lo;
+	this.pl=pl;//是否自动播放
+	this.lo=lo;//是否循环
 	this.vo=arguments[2]?arguments[2]:0.5;
 }	
 
@@ -62,6 +70,7 @@ audio.prototype.play=function(name)
 	this.obj.play();
 }	
 
+
 audio.prototype.pause=function()
 {
 	this.obj.pause();
@@ -71,7 +80,9 @@ var sound_complete=new audio(true,false,0.8);//新建声音对象a1
 var background_music=new audio(true,true,0.8);//新建背景音乐对象a2
 
 
-//----------------------------------------------标题动态提醒对象
+
+
+//标题动态提醒对象
 var isusing = false;
 var newMessageRemind=
 {
@@ -116,7 +127,7 @@ var newMessageRemind=
 };
 
 
-/*--------------------------------------------------番茄时钟对象
+/*番茄时钟对象
 
 属性：
 1、总时间time
@@ -147,7 +158,7 @@ var tomato=function (show_id,start_bt_id,pb_id,time,rest)
 }
 
 	
-//-------------------------------------------------------番茄时钟对象倒计时方法
+//番茄时钟对象倒计时方法
 tomato.prototype.start=function ()
 {	
 	
@@ -156,7 +167,6 @@ tomato.prototype.start=function ()
 	{	
 		todo.p_bgm();
 	}
-	
 	
 	
 	//取消当前番茄时钟
@@ -261,7 +271,7 @@ tomato.prototype.remind=function ()
 	
 	};
 	
-	navigator.vibrate([3000, 2000, 1000,2000,1000,2000,1000]);	//手机振动
+	//navigator.vibrate([3000, 2000, 1000,2000,1000,2000,1000]);	//手机振动
 	
 	document.title="您完成了一个番茄";
 	
@@ -275,14 +285,14 @@ tomato.prototype.remind=function ()
 tomato.prototype.p_bgm=function()
 {		
 		
-		var music_name="轻音乐";
+		var music_name="平静下雨";
 		if(localStorage.getItem("background_music")!=null)
 		{
 			music_name=localStorage.getItem("background_music");
 		};
 		if(background_music==null)
 		{	
-			background_music=new audio(true,true,0.8);
+			background_music=new audio(true,true,0.5);
 			background_music.play(music_name);	
 			
 		}else
@@ -303,13 +313,9 @@ tomato.prototype.p_wt=function()
 	
 }
 
-//------------------------------------------------------------------新建番茄时钟对象		
+//新建番茄时钟对象		
 var todo=new tomato("tomato","start","progress_bar",25);//工作时钟
-
-
 todo.if_rest(false);
-
-
 
 
 var todo_rest=new tomato("tomato","start","progress_bar",5);//休息时钟
@@ -325,7 +331,7 @@ document.body.onbeforeunload = function()
 
 
 
-//___________________________________________________窗口对象
+//窗口对象
 /*
 属性
 1、选择窗口对象
@@ -333,19 +339,17 @@ document.body.onbeforeunload = function()
 
 方法
 1、显示和隐藏
-
-
 */
 var win=function (id,bt_id){
 	
 	this.win_obj=fn.byID(id);//显示隐藏主体
 	this.bt=fn.byID(bt_id);//控制按钮
+}
 	
 
-	}
-	
 win.prototype.show_hidden=function ()//控制显示隐藏
-{	var that=this;
+{	
+	var that=this;
 /*	alert(that.win_obj);
 	alert(that.win_obj.getAttribute("display"));*/
 	this.bt.addEventListener("click",sh);
@@ -397,19 +401,16 @@ win_bottom.show_hidden();
 
 win_bottom.tab("set_menu","li","set_list","ul");
 	
-	//document.getElementById("alert_window").getAttribute("display");
-	
-	
-	
-//-----------------------------------用户设置番茄钟属性对象
 
+	
+	
+//用户设置番茄钟属性对象
 var s_t=fn.byID("s_t");//设置番茄钟长度
 
 s_t.onchange=function()
 {
 	
 	localStorage.setItem("time",s_t.value);	
-	
 	
 }
 
@@ -436,6 +437,7 @@ c_t.onclick=function ()
 	
 }
 
+
 var w_t=fn.byID("w_t");//设置提示音
 
 w_t.onchange=function()
@@ -444,7 +446,7 @@ w_t.onchange=function()
 	localStorage.setItem("warningTone",w_t.value);	
 	sound_complete.pause();
 	sound_complete=null;
-	sound_complete=new audio(true,true,0.8);
+	sound_complete=new audio(true,false,0.8);
 	
 }
 
@@ -489,26 +491,3 @@ alert_message.prototype.showTime=function()
 }
 
 var a_m=new alert_message();
-
-/*var set_tomato=function (set_id,set_item,set_value)
-{
-    this.set=fn.byID(set_id);//设置的项目
-	this.set_item=set_item;
-	this.set_value=set_value;
-}
-
-set_tomato.prototype.to_set=function(action)
-{
-	var that=this;
-	this.set.action=function()
-	{
-	
-		
-	localStorage.setItem(that.set_item,that.set.that.set_value);	
-		
-	}
-	
-}
-
-var set_time=new set_tomato("s_t","time","value");
-set_time.to_set("onchange");*/
